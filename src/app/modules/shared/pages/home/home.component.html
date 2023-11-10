@@ -1,0 +1,102 @@
+
+<app-navbar  [isConnected]="true"></app-navbar>
+<div class="container-fluid ">
+    <div id="capture-area" class="row mt-3">
+  
+    
+        <div class="result col-md-4 border py-3">
+            <p>Parametrages</p>
+            <div style="padding: 0px;">
+                <div [ngStyle]="{'padding': '10px'}">
+                  <div class="dropzone" fileDragDrop (filesChangeEmiter)="onFileChange($event)">
+                    
+                    <div class="text-wrapper">
+                      <div class="centered">
+                        <input type="file" name="file" id="file" accept="image/*, application/pdf" (change)="onFileChange($event)" multiple>
+                        <label for="file"><span class="textLink p-1">Selectionnez votre fichier</span><span class="ms-2" style="font-size: 15px;">ou glisser ici!</span></label>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+                <hr>
+               
+              </div>
+              <div>
+                <p>Position</p>
+                <div class="row">
+                    <div class="input-group mb-3 col">
+                        <span class="input-group-text">S X</span>
+                        <input type="text" [value]="position.sx" class="form-control" aria-label="Amount (to the nearest dollar)">
+                      </div>
+                    <div class="input-group mb-3 col">
+                        <span class="input-group-text">S Y</span>
+                        <input type="text"  [value]="position.sy" class="form-control" aria-label="Amount (to the nearest dollar)">
+                      </div>
+                   
+                    
+                </div>
+                <div class="row">
+                    <div class="input-group mb-3 col">
+                        <span class="input-group-text">E X</span>
+                        <input type="text"  [value]="position.ex" class="form-control" aria-label="Amount (to the nearest dollar)">
+                      </div>
+                    <div class="input-group mb-3 col">
+                        <span class="input-group-text">E Y</span>
+                        <input type="text" [value]="position.ey"  class="form-control" aria-label="Amount (to the nearest dollar)">
+                      </div>
+                </div>
+                <div class="row">
+                    <div class="input-group mb-3 col">
+                        <input type="text" class="form-control" [value]="results" aria-label="Amount (to the nearest dollar)">
+                        <span class="input-group-text poninter" (click)="startSelection()">Select</span>
+
+                      </div>
+                </div>
+              </div>
+          <hr>
+          <!-- <p class="border-left" *ngFor="let result of resultList">
+            {{ result }}
+          </p> -->
+        </div>
+        
+        <div class="col-md-8">
+          <div class="a"></div>
+      
+          <img [src]="fileToDisplay" *ngIf="!isPdf" width="400" alt="" />
+          <ngx-extended-pdf-viewer         
+          (textLayerRendered)="onTextLayerRendered()"
+          *ngIf="isPdf" 
+          [scrollMode]="3"  
+          [handTool]="false"  
+          [zoom]="'100%'" 
+          pageViewMode="single" 
+          [showToolbar]="true" 
+          class="pdf" 
+          [src]="fileToDisplay" 
+          [height]="'100vh'"
+          #pdfViewer
+          [useBrowserLocale]="true">
+          </ngx-extended-pdf-viewer>
+      
+        </div>
+        <!-- <ngx-extended-pdf-viewer  [scrollMode]="3" width="auto"  [handTool]="false"  [zoom]="'100%'" [height]="'auto'" pageViewMode="single" [showToolbar]="false" class="pdf" [src]="'https://vadimdez.github.io/ng2-pdf-viewer/assets/pdf-test.pdf'" [useBrowserLocale]="true"></ngx-extended-pdf-viewer> -->
+      
+      
+      </div>
+</div>
+<div>
+
+  <div
+    *ngIf="isSelecting"
+    class="areaselect"
+    [ngStyle]="{ left: left, top: top, width: width, height: height }"
+  ></div>
+
+ 
+ 
+</div>
+
+
+
+
+<!-- <button class="startBtn" *ngIf="fileToDisplay" (click)="startSelection()">+</button> -->
