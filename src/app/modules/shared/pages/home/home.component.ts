@@ -24,6 +24,7 @@ export class HomeComponent implements OnInit {
     ex: 0,
     ey: 0
   }
+  page: number = 1;
 
 
   constructor (@Inject(DOCUMENT) private document: Document) {
@@ -342,6 +343,10 @@ export class HomeComponent implements OnInit {
   deleteFromArray(index:any) {
     console.log(this.files);
     this.files.splice(index, 1);
+  }
+  handlePage(page: number) {
+    this.page = page;
+    
   }
   title = 'AngularApp';
 }

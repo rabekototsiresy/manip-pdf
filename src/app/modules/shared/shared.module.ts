@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { HomeComponent } from './pages/home/home.component';
 import { NgxExtendedPdfViewerModule } from 'ngx-extended-pdf-viewer';
 import { NavbarComponent } from './components/navbar/navbar.component';
+import { FormsModule } from '@angular/forms';
+
 
 
 
@@ -13,11 +15,14 @@ import { NavbarComponent } from './components/navbar/navbar.component';
   ],
   imports: [
     CommonModule,
-    NgxExtendedPdfViewerModule
+    NgxExtendedPdfViewerModule,
+    FormsModule,
+
   ],
   exports: [
     NgxExtendedPdfViewerModule,
-    NavbarComponent
+    NavbarComponent,
+    FormsModule
   ]
 })
 export class SharedModule { }

@@ -45,6 +45,11 @@
                         <input type="text" [value]="position.ey"  class="form-control" aria-label="Amount (to the nearest dollar)">
                       </div>
                 </div>
+                <hr>
+                <div class="input-group mb-3 col">
+                    <span class="input-group-text">Page</span>
+                    <input [disabled]="!fileToDisplay" type="text" [value]="page" [(ngModel)]="page"  class="form-control" aria-label="Amount (to the nearest dollar)">
+                  </div>
                 <div class="row">
                     <div class="input-group mb-3 col">
                         <input type="text" class="form-control" [value]="results" aria-label="Amount (to the nearest dollar)">
@@ -75,6 +80,8 @@
           [src]="fileToDisplay" 
           [height]="'100vh'"
           #pdfViewer
+          (pageChange)="handlePage($event)"
+          [page]="page"
           [useBrowserLocale]="true">
           </ngx-extended-pdf-viewer>
       
@@ -92,7 +99,7 @@
     [ngStyle]="{ left: left, top: top, width: width, height: height }"
   ></div>
 
- 
+ <!-- <img [src]="imageSelected" alt=""> -->
  
 </div>
 
